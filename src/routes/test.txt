@@ -1,0 +1,178 @@
+  <div class="swiper-container">
+    <div
+      class="swiper-wrapper">
+      <Swiper
+        :modules="modules"
+        :slides-per-view="3"
+        :space-between="50"
+        :loop="true"
+        navigation
+        :pagination="{clickable:ture}"
+        :autoplay="{delay:3000}">
+        <swiper-slide>
+          <div
+            class="swiper-slide">
+            <RouterLink
+              :to="`/DetailedBook/${homeBooks1.id}`"
+              class="book-zone">
+              <div
+                class="bookImage"
+                :style="{backgroundImage: `url(${requestDiffSizeImage(homeBooks1.imgUrl)})`}">
+              </div>
+              <div class="book-detail">
+                <p class="book-title">
+                  {{ homeBooks1.title }}
+                </p>
+                <p class="book-author">
+                  {{ homeBooks1.author }}
+                </p>
+                <p class="book-description">
+                  {{ homeBooks1.publisher }}
+                </p>
+              </div>
+            </RouterLink>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div
+            class="swiper-slide">
+            <RouterLink
+              :to="`/DetailedBook/${homeBooks2.id}`"
+              class="book-zone">
+              <div
+                class="bookImage"
+                :style="{backgroundImage: `url(${requestDiffSizeImage(homeBooks2.imgUrl)})`}">
+                <p class="book-detail">
+                  {{ homeBooks2.title }}
+                </p>
+                <p class="book-detail">
+                  {{ homeBooks2.author }} | {{ homeBooks2.publisher }}
+                </p>
+              </div>
+            </RouterLink>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div
+            class="swiper-slide">
+            <RouterLink
+              :to="`/DetailedBook/${homeBooks3.id}`"
+              class="book-zone">
+              <div
+                class="bookImage"
+                :style="{backgroundImage: `url(${requestDiffSizeImage(homeBooks3.imgUrl)})`}">
+                <p class="book-detail">
+                  {{ homeBooks3.title }}
+                </p>
+                <p class="book-detail">
+                  {{ homeBooks3.author }} | {{ homeBooks3.publisher }}
+                </p>
+              </div>
+            </RouterLink>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div
+            class="swiper-slide">
+            <RouterLink
+              :to="`/DetailedBook/${homeBooks4.id}`"
+              class="book-zone">
+              <div
+                class="bookImage"
+                :style="{backgroundImage: `url(${requestDiffSizeImage(homeBooks4.imgUrl)})`}">
+                <p class="book-detail">
+                  {{ homeBooks4.title }}
+                </p>
+                <p class="book-detail">
+                  {{ homeBooks4.author }} | {{ homeBooks4.publisher }}
+                </p>
+              </div>
+            </RouterLink>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div
+            class="swiper-slide">
+            <RouterLink
+              :to="`/DetailedBook/${homeBooks5.id}`"
+              class="book-zone">
+              <div
+                class="bookImage"
+                :style="{backgroundImage: `url(${requestDiffSizeImage(homeBooks5.imgUrl)})`}">
+                <p class="book-detail">
+                  {{ homeBooks5.title }}
+                </p>
+                <p class="book-detail">
+                  {{ homeBooks5.author }} | {{ homeBooks5.publisher }}
+                </p>
+              </div>
+            </RouterLink>
+          </div>
+        </swiper-slide>
+      </Swiper>
+    </div>
+  </div>
+
+  <script>
+import { Autoplay, Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+    }
+  },
+  computed: {
+    homeBooks1() {
+      return this.$store.state.book.homeBooks1
+    },
+    homeBooks2() {
+      return this.$store.state.book.homeBooks2
+    },
+    homeBooks3() {
+      return this.$store.state.book.homeBooks3
+    },
+    homeBooks4() {
+      return this.$store.state.book.homeBooks4
+    },
+    homeBooks5() {
+      return this.$store.state.book.homeBooks5
+    }
+  },
+  async created () {
+    this.$store.dispatch('book/homeBooks1', {
+      id: 2
+    })
+    this.$store.dispatch('book/homeBooks2', {
+      id: 38
+    })
+    this.$store.dispatch('book/homeBooks3', {
+      id: 120
+    })
+    this.$store.dispatch('book/homeBooks4', {
+      id: 90
+    })
+    this.$store.dispatch('book/homeBooks5', {
+      id: 109
+    })
+  },
+  methods: {
+    requestDiffSizeImage(url, imgSize = "xxlarge") {
+      return url.replace('large', `${imgSize}`)
+    }
+  },
+  setup() {
+    return {
+      modules: [Navigation, Pagination, Autoplay]
+    }
+  }
+}
+</script>
